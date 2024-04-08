@@ -1,6 +1,7 @@
 import 'package:app/network/NetWork.dart';
 import 'package:app/util/Util.dart';
 import 'package:app/util/dto/WorkController/WorkDTO.dart';
+import 'package:app/widget/DetailView.dart';
 // import 'package:app/widget/MainView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -200,7 +201,9 @@ class LoginViews extends State<LoginView>{
               SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
-                  onPressed: () {  },
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailView()));
+                  },
                   child: Padding(
                     child:Text(
                         "Đăng nhập",
