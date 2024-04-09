@@ -1,7 +1,8 @@
 import 'package:app/network/NetWork.dart';
 import 'package:app/util/Util.dart';
 import 'package:app/util/dto/WorkController/WorkDTO.dart';
-import 'package:app/widget/DetailView.dart';
+import 'package:app/widget/ChiTietKH.dart';
+import 'package:app/widget/TrangChu.dart';
 // import 'package:app/widget/MainView.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,11 +12,11 @@ class LoginView extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
     // TODO: implement createState
-   return LoginViews();
+   return DangNhap();
   }
 
 }
-class LoginViews extends State<LoginView>{
+class DangNhap extends State<LoginView>{
   NotificationService notificationService = NotificationService();
   @override
   void initState() {
@@ -202,7 +203,7 @@ class LoginViews extends State<LoginView>{
                 width: MediaQuery.of(context).size.width,
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>DetailView()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>TrangChu()));
                   },
                   child: Padding(
                     child:Text(

@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DetailView extends StatefulWidget {
-  const DetailView({super.key});
+class ChiTietKH extends StatefulWidget {
+  const ChiTietKH({super.key});
 
   @override
-  State<DetailView> createState() => _DetailViewState();
+  State<ChiTietKH> createState() => _ChiTietKHState();
 }
 
-class _DetailViewState extends State<DetailView> {
+class _ChiTietKHState extends State<ChiTietKH> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +38,7 @@ class _DetailViewState extends State<DetailView> {
                         color: Colors.green,
                         size: 30,
                       ),
-                      Text("dssd"),
+                      Text(""),
                       Icon(
                         Icons.save_rounded,
                         color: Colors.green,
