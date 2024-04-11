@@ -1,4 +1,6 @@
 import 'package:app/modal/BoLoc.dart';
+import 'package:app/modal/Search.dart';
+import 'package:app/widget/ChiTietKH.dart';
 import 'package:app/widget/DangNhap.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -23,18 +25,36 @@ class _ListKhuVucChiTietState extends State<ListKhuVucChiTiet> {
   double sizeIcon = 40;
   Color colorIcon = Color.fromRGBO(0, 128, 2, 1);
   Color colorPress = Colors.red;
-  List<Widget> listWidget = [];
-
   bool isFilter = false;
-  showFilter(Widget filter){
+  bool isSearch = false;
+  final FocusNode _focusNode = FocusNode();
+  showFilter(String? type){
     setState(() {
-      listWidget.add(filter);
-      isFilter = true;
+      switch(type){
+        case "BoLoc":{
+          isFilter = true;
+          break;
+        }
+        case "Search":{
+          isSearch = true;
+          break;
+        }
+      }
     });
   }
-  hideFilter(){
+  hideFilter(String? type){
     setState(() {
-      isFilter = false;
+      switch(type){
+        case "BoLoc":{
+          isFilter = false;
+          break;
+        }
+        case "Search":{
+          isSearch = false;
+          break;
+        }
+      }
+      _focusNode.unfocus();
     });
   }
   @override
@@ -128,6 +148,7 @@ class _ListKhuVucChiTietState extends State<ListKhuVucChiTiet> {
                                           child: Padding(
                                             padding: EdgeInsets.only(left: 10),
                                             child: TextField(
+                                              focusNode: _focusNode,
                                               decoration: InputDecoration(
                                                 border: InputBorder.none,
                                               ),
@@ -151,102 +172,107 @@ class _ListKhuVucChiTietState extends State<ListKhuVucChiTiet> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Container(
-                          decoration: BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(color: Colors.grey)
-                              )
-                          ),
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 20),
-                            child: Column(
-                              children: [
-                                Text(
-                                  "2, A0200821, 308961, Huỳnh Kim Đại, 50, Nguyễn Trãi, Phường Thuận Hòa, Thành Phố Huế",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16,
-                                      color: Colors.red
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsetsDirectional.symmetric(vertical: 10),
-                                            child: Row(
-                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                              children: [
-                                                Row(
-                                                  children: [
-                                                    Text("Chỉ số: ",),
-                                                    Text("0"),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text("Sản lượng: "),
-                                                    Text("1"),
-                                                  ],
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Text("Tiền: "),
-                                                    Text("3"),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                          Row(
-                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text("17:28 - 13/03/2024"),
-                                              Row(
-                                                children: [
-                                                  Text("Kỳ ghi: "),
-                                                  Text("Tháng chẵn")
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ],
-                                      ),
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ChiTietKH(title: "2, A0200821, 308961, Huỳnh Kim Đại, 50, Nguyễn Trãi, Phường Thuận Hòa, Thành Phố Huế", titlePre: title,)));
+                        },
+                        child: Container(
+                            decoration: BoxDecoration(
+                                border: Border(
+                                    bottom: BorderSide(color: Colors.grey)
+                                )
+                            ),
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 10, right: 10, top: 0, bottom: 20),
+                              child: Column(
+                                children: [
+                                  Text(
+                                    "2, A0200821, 308961, Huỳnh Kim Đại, 50, Nguyễn Trãi, Phường Thuận Hòa, Thành Phố Huế",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16,
+                                        color: Colors.red
                                     ),
-                                    Padding(
-                                      padding: EdgeInsets.only(left: 50),
-                                      child: Column(
-                                        children: [
-                                          GestureDetector(
-                                            child: Padding(
-                                              padding: EdgeInsetsDirectional.symmetric(vertical: 5),
-                                              child: Icon(
-                                                CupertinoIcons.check_mark_circled_solid,
-                                                size: 30,
-                                                color: Colors.green,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsetsDirectional.symmetric(vertical: 10),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text("Chỉ số: ",),
+                                                      Text("0"),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text("Sản lượng: "),
+                                                      Text("1"),
+                                                    ],
+                                                  ),
+                                                  Row(
+                                                    children: [
+                                                      Text("Tiền: "),
+                                                      Text("3"),
+                                                    ],
+                                                  ),
+                                                ],
                                               ),
                                             ),
-                                            onTap: (){},
-                                          ),
-                                          GestureDetector(
-                                            child: Icon(
-                                              CupertinoIcons.location_solid,
-                                              size: 30,
-                                              color: Colors.orange,
+                                            Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                Text("17:28 - 13/03/2024"),
+                                                Row(
+                                                  children: [
+                                                    Text("Kỳ ghi: "),
+                                                    Text("Tháng chẵn")
+                                                  ],
+                                                )
+                                              ],
                                             ),
-                                            onTap: (){},
-                                          )
-                                        ],
+                                          ],
+                                        ),
                                       ),
-                                    )
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(left: 50),
+                                        child: Column(
+                                          children: [
+                                            GestureDetector(
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional.symmetric(vertical: 5),
+                                                child: Icon(
+                                                  CupertinoIcons.check_mark_circled_solid,
+                                                  size: 30,
+                                                  color: Colors.green,
+                                                ),
+                                              ),
+                                              onTap: (){},
+                                            ),
+                                            GestureDetector(
+                                              child: Icon(
+                                                CupertinoIcons.location_solid,
+                                                size: 30,
+                                                color: Colors.orange,
+                                              ),
+                                              onTap: (){},
+                                            )
+                                          ],
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            )
+                        ),
+                      )
                     ],
                   ),
                 )
@@ -280,7 +306,7 @@ class _ListKhuVucChiTietState extends State<ListKhuVucChiTiet> {
                       ),
                       IconButton(
                           onPressed:(){
-                            showFilter(BoLoc(hide: this.hideFilter,));
+                            showFilter("BoLoc");
                           },
                           icon: Icon(
                             Icons.filter_list_alt,
@@ -289,11 +315,13 @@ class _ListKhuVucChiTietState extends State<ListKhuVucChiTiet> {
                           )
                       ),
                       IconButton(
-                          onPressed: (){},
+                          onPressed: (){
+                            showFilter("Search");
+                          },
                           icon: Icon(
                             CupertinoIcons.search,
                             size: this.sizeIcon,
-                            color: colorIcon,
+                            color: isSearch==false ? colorIcon : colorPress,
                           )
                       ),
                       IconButton(
@@ -310,7 +338,31 @@ class _ListKhuVucChiTietState extends State<ListKhuVucChiTiet> {
             )
           ],
         ),
-          this.isFilter ? BoLoc(hide: hideFilter) : Container()
+          isFilter ?
+          TweenAnimationBuilder<double>(
+              tween: Tween<double>(begin: 0.0, end: 1.0),
+              curve: Curves.ease,
+              duration: const Duration(seconds: 1),
+              builder: (BuildContext context, double opacity, Widget? child) {
+                return Opacity(
+                    opacity: opacity,
+                    child: BoLoc(hide: hideFilter)
+                );
+              }):
+          Container(),
+
+          isSearch ?
+          TweenAnimationBuilder<double>(
+              tween: Tween<double>(begin: 0.0, end: 1.0),
+              curve: Curves.ease,
+              duration: const Duration(seconds: 1),
+              builder: (BuildContext context, double opacity, Widget? child) {
+                return Opacity(
+                    opacity: opacity,
+                    child: Search(hide: hideFilter)
+                );
+              }):
+          Container(),
         ]
       )
     );

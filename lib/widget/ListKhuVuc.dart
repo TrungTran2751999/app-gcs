@@ -134,7 +134,7 @@ class _ListKhuVucState extends State<ListKhuVuc> {
                         ),
                       ),
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ListKhuVucChiTiet(title: "A020 - Nguyễn Trãi Tháng 03/2024 Nguyễn Trãi Tháng")));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>ListKhuVucChiTiet(title: "A020 - Nguyễn Trãi Tháng 03/2024 Nguyễn Trãi Tháng",)));
                       },
                     )
                   ],
